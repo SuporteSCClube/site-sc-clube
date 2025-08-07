@@ -20,5 +20,5 @@ jobs:
         server: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASS }}
-        # local-dir: './'  # Descomente e ajuste se sua pasta raiz não for o local correto
-        # remote-dir: '/htdocs/' # Descomente e ajuste se precisar de um caminho específico
+        local-dir: './'
+        remote-dir: '/public_html/'
