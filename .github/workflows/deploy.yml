@@ -1,17 +1,23 @@
-name: Deploy via ftp
-      on: push
-      jobs:
-        deploy:
-          name: Deploy
-          runs-on: ubuntu-latest
-          steps:
-          - uses: actions/checkout@v2
+name: Deploy Automático via FTP
 
-          - name: FTP Deploy Locaweb
-            uses: locaweb/ftp-deploy@1.0.0
-            with:
-              host: ${{ secrets.HOST }} 
-              user: ${{ secrets.USER }}
-              password: ${{ secrets.PASS }}
-              localDir: "dist"
-  
+on:
+  push:
+    branches:
+      - main  # Altere para 'master' se essa for sua branch principal
+
+jobs:
+  web-deploy:
+    name: Publicar no Servidor
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v4
+
+    - name: Deploy para o FTP
+      uses: git-ftp/action@v1.0.1
+      with:
+        ftp_server: ${{ secrets.HOST }}
+        ftp_username: ${{ secrets.USER }}
+        ftp_password: ${{ secrets.PASS }}
+        # ftp_path: '/htdocs' # Descomente e ajuste se precisar de um caminho específico
