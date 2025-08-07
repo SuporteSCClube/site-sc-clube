@@ -15,9 +15,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Deploy para o FTP
-      uses: git-ftp/action@v1.0.1
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.0
       with:
-        ftp_server: ${{ secrets.HOST }}
-        ftp_username: ${{ secrets.USER }}
-        ftp_password: ${{ secrets.PASS }}
-        # ftp_path: '/htdocs' # Descomente e ajuste se precisar de um caminho específico
+        server: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PASS }}
+        # local-dir: './'  # Descomente e ajuste se sua pasta raiz não for o local correto
+        # remote-dir: '/htdocs/' # Descomente e ajuste se precisar de um caminho específico
